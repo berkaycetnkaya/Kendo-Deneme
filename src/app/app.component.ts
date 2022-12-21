@@ -13,7 +13,10 @@ import { CreateFormGroupArgs } from '@progress/kendo-angular-grid';
 export class AppComponent implements OnInit {
   title = 'kendo-angular-app';
  car:Car[]=[]
+
  formGroup: FormGroup;
+
+
 
 
 
@@ -32,6 +35,8 @@ export class AppComponent implements OnInit {
   getCars(){
     this.carService.getCars().subscribe(response=>{
       this.car=response.data
+
+
       console.log(response.message)
       console.log(response.success)
     })

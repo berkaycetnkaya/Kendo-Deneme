@@ -3,10 +3,15 @@
  [kendoGridBinding]="car"
  [filterable]="true"
 
+
+
+
  >
+ <ng-template kendoGridToolbarTemplate>
+  <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
+</ng-template>
 
-
-  <kendo-grid-column field="brandName" title="Marka"> </kendo-grid-column>
+  <kendo-grid-column field="brandName" title="Marka" [sortable]="true"> </kendo-grid-column>
   <kendo-grid-column field="colorName" title="Rengi"> </kendo-grid-column>
   <kendo-grid-column field="modelYear" title="Model Yılı">
   </kendo-grid-column>
@@ -14,7 +19,7 @@
   <kendo-grid-column field="description" title="Özellikleri"> </kendo-grid-column>
   </kendo-grid>
 
-
+  <kendo-dropdownbutton *ngFor="let ca of car" [data]="ca.brandName" > araba </kendo-dropdownbutton>
 
   <kendo-grid
   [kendoGridReactiveEditing]="createFormGroup"
@@ -25,7 +30,7 @@
   [navigable]="true"
 >
   <ng-template kendoGridToolbarTemplate>
-    <button kendoGridAddCommand>Add new</button>
+    <button kendoGridAddCommand>Araba Ekle</button>
   </ng-template>
   <kendo-grid-column
     field="ProductName"
