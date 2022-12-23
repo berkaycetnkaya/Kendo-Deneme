@@ -4,6 +4,7 @@ import { Product } from './model/product';
 import { CarServiceService } from './services/car-service.service';
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { CreateFormGroupArgs } from '@progress/kendo-angular-grid';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,15 @@ import { CreateFormGroupArgs } from '@progress/kendo-angular-grid';
 export class AppComponent implements OnInit {
   title = 'kendo-angular-app';
  car:Car[]=[]
+  b:Car[]=[]
+  c:string[
+
+  ]=[]
+  dropdown="";
+  currentBrand:string;
 
  formGroup: FormGroup;
+
 
 
 
@@ -31,17 +39,43 @@ export class AppComponent implements OnInit {
     this.getCars();
     this.createFormGroup = this.createFormGroup.bind(this);
 
+
   }
   getCars(){
     this.carService.getCars().subscribe(response=>{
       this.car=response.data
+      this.b=response.data
+
+      for (const car of response.data) {
+       if(!this.c.includes(car.brandName)){
+        this.c.push(car.brandName)
+       }
+
+
+       // console.log(car.brandName+"bu car.brandname")
+      }
+      console.log(this.c+"bu c")
+return this.b;
+
 
 
       console.log(response.message)
       console.log(response.success)
+      console.log(this.car)
+
     })
+    //console.log(this.b+"bu 2. return")
+    return this.b;
+
+
+
 
   }
+  getCurrentBrand(brand:string){
+this.currentBrand=brand
+  }
+
+
   public createFormGroup(args: CreateFormGroupArgs): FormGroup {
     const item = args.isNew ? this.car : args.dataItem;
 

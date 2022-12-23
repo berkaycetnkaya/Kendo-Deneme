@@ -7,23 +7,36 @@ import { FormsModule } from "@angular/forms";
 import { ButtonsModule } from "@progress/kendo-angular-buttons";
 import { InputsModule } from "@progress/kendo-angular-inputs";
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule,
+   HTTP_INTERCEPTORS,
+   HttpClient,
+   HttpClientJsonpModule
+  } from '@angular/common/http';
 
 
 
+import { ReactiveFormsModule } from "@angular/forms";
+import { DialogModule } from "@progress/kendo-angular-dialog";
+import { LabelModule } from "@progress/kendo-angular-label";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GridModule } from '@progress/kendo-angular-grid';
+import { EditService, GridModule } from '@progress/kendo-angular-grid';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+import { AnagridComponent } from './components/editpopup/anagrid/anagrid.component';
+import { CategoryGridComponent } from './components/editpopup/category-grid/category-grid.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterPipePipe,
+    AnagridComponent,
+     CategoryGridComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +47,16 @@ import { GridModule } from '@progress/kendo-angular-grid';
     ButtonsModule,
     InputsModule,
     GridModule,
-
-    HttpClientModule
+    HttpClientJsonpModule,
+    ReactiveFormsModule,
+    DialogModule,
+    InputsModule,
+    LabelModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+
+  ],
 
   bootstrap: [AppComponent]
 })
